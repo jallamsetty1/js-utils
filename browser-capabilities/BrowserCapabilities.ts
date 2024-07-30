@@ -1,4 +1,4 @@
-import BrowserDetection from '../browser-detection/BrowserDetection.js';
+import BrowserDetection from '../browser-detection/BrowserDetection';
 
 // TODO: Move BrowserCapabilities from lib-jitsi-meet here and use the JSON
 // format for them.
@@ -7,6 +7,7 @@ import BrowserDetection from '../browser-detection/BrowserDetection.js';
  * Implements browser capabilities for lib-jitsi-meet.
  */
 export default class BrowserCapabilities {
+    private _capabilities: { isSupported: boolean; };
     /**
      * Creates new BrowserCapabilities instance.
      *
@@ -17,7 +18,7 @@ export default class BrowserCapabilities {
      * @param {string} browserInfo.name - The name of the browser.
      * @param {string} browserInfo.version - The version of the browser.
      */
-    constructor(capabilitiesDB = {}, isUsingIFrame = false, browserInfo) {
+    constructor(capabilitiesDB: object = {}, isUsingIFrame: boolean = false, browserInfo: { name: string; version: string; }) {
         const browser = new BrowserDetection(browserInfo);
         let capabilitiesByVersion;
 
@@ -71,7 +72,7 @@ export default class BrowserCapabilities {
      *
      * @returns {boolean}
      */
-    isSupported() {
+    isSupported(): boolean {
         return this._capabilities.isSupported;
     }
 
@@ -80,7 +81,7 @@ export default class BrowserCapabilities {
      *
      * @returns {boolean}
      */
-    supportsAudioIn() {
+    supportsAudioIn(): boolean {
         return this._capabilities.audioIn || false;
     }
 
@@ -89,7 +90,7 @@ export default class BrowserCapabilities {
      *
      * @returns {boolean}
      */
-    supportsAudioOut() {
+    supportsAudioOut(): boolean {
         return this._capabilities.audioOut || false;
     }
 
@@ -99,7 +100,7 @@ export default class BrowserCapabilities {
      *
      * @returns {boolean}
      */
-    supportsScreenSharing() {
+    supportsScreenSharing(): boolean {
         return this._capabilities.screenSharing || false;
     }
 
@@ -108,7 +109,7 @@ export default class BrowserCapabilities {
      *
      * @returns {boolean}
      */
-    supportsVideoIn() {
+    supportsVideoIn(): boolean {
         return this._capabilities.videoIn || false;
     }
 
